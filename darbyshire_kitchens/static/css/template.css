@@ -9,135 +9,61 @@
   background-color: #ffcf73;
 }
 
-#mainHeader {
-
-}
-
-#mainHeader #headerImageCarosel {
-  padding-left: 0em;
-  padding-right: 0em;
-}
-
-#mainHeader #headerImageCarosel img {
-  width:100%;
-}
-
-#mainHeader #nameInlay {
-  position: absolute;
+#header {
   padding-left: 0em;
   padding-right: 0em;
   color: white;
-}
-
-#mainHeader #nameInlay h2 {
-  margin-top: 0em;
-  padding: 0.5em 1em;
-  font-size: 3em;
   background-color: #a66c00;
-  opacity:0.9;
-  filter:alpha(opacity=90); /* For IE8 and earlier */
 }
 
-#menu {
+#header h2 {
+  margin-top: 0em;
+  margin-bottom: 0em;
+  padding: 0.5em 1em;
+  /*font-size: 3em;*/
+  font-size: 25px;
+  background-color: #a66c00;
+  /*opacity:0.9;
+  filter:alpha(opacity=90);*/ /* For IE8 and earlier */
 }
 
-#menu ul#navBar {
-
+#header #menu .menu-button {
+  font-size: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
-#menu ul#navBar li.navBarItem {
-  
+#header #menu .menu-button:hover {
+  color: gray;
 }
 
-#menu ul#navBar li.navBarItem a {
-  /*background-image: url('../img/wood_panel_button.jpg');*/
-  /*background-color: #A66D00;*/
-
-  background: -moz-linear-gradient(
-    top,
-    #a66c00 0%,
-    #FFA700 50%,
-    #a66c00);
-  background: -webkit-gradient(
-    linear, left top, left bottom, 
-    from(#a66c00),
-    color-stop(0.50, #FFA700),
-    to(#a66c00));
-
-  font-size: 3em;
-  text-align: center;
-  vertical-align: middle;
-  color: white;
-  padding-top: 0.75em;
-  padding-bottom: 0.75em;
+#myCarousel {
+  padding-left: 0em;
+  padding-right: 0em;
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
-#menu ul#navBar li.navBarItem a:link, a:visited, a:active {
- text-decoration: none;
+#myCarousel .carousel-control {
+  /*background-image: none;*/
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
-#menu ul#navBar li.navBarItem a:hover {
-  text-decoration: none;
-  color: #ffcf73;
+#advertisements .advertisement {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-color:white;
 }
 
-#bodyDisplay {
-/*  border: 1px solid black; */
-/*background-color: white;*/
-}
 
-#mainFooter {
-  /*margin-top: 1em;*/
+#footer {
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   text-align: center;
-  font-size: 1.5em;
-  /*border-radius: 0px 0px 25px 25px;*/
-
-  color: black;
-  /*background-color: #a66c00;*/
-
-  margin-left:auto;
-  margin-right:auto;
-  margin-bottom: 1em;
-  float: none; /* Bootstrap spans float left by default */  
-}
-
-#mainFooter #copyrightTag {
-  
-}
-
-#mainFooter .footerColumn {
-  font-size: 0.6em;
-  border-left: 1px solid black;
-  padding-left: 2em;
-}
-
-#mainFooter .footerColumn:nth-of-type(1) {
-  padding-left: 0em;
-  border-left: none;
-}
-
-#mainFooter ul#footerLinks {
-  list-style-type: none;
-}
-
-
-/** Home Page styles */
-
-#bodyDisplay article {
-  margin-right: 1em;
-  background-image: url('static/img/wood_panel_button.jpg');
-}
-
-#bodyDisplay article:nth-of-type(1) {
-  margin-top: 1em;
-}
-
-
-/** Photos Page styles */
-
-#myCarousel {
-  margin-top: 1em;
-  margin-right: 1em;
+  font-size: 20px;
+  background-color: #a66c00;
+  color: white;
 }

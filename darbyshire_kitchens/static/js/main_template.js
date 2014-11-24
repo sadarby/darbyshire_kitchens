@@ -1,50 +1,17 @@
 
 
 $(function () {
-	$('.input-popup').popover({trigger:"manual", placement: "top"});
-	$('#loginEmail').popover();
-
-	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
-		$('.input-popup').focus(function() {
-			$(this).popover("show");
-		});
-
-		$('.input-popup').blur(function() {
-			$(this).popover("hide");
-		});
-	}
-	else {
-		$('.input-popup').mouseover(function() {
-			$(this).popover("show");
-		});
-
-		$('.input-popup').mouseleave(function() {
-			$(this).popover("hide");
-		});
-	}
-
-	var messageNumber = $.getUrlVar('messageNum'); // Retrieve the message num
-
-	if (messageNumber == 1) {
-		$('#userMessageLabel').html('Registration Successful!');
-		$('#userMessageBody').html('You have been registered! Once Version 1 is completed, you will receive an email allowing you to set your password and login!');
-		$('#userMessage').modal();
-		$('#userMessage').modal('show');
-	}
-	else if (messageNumber == 2) {
-		$('#userMessageLabel').html('Registration Failed');
-		$('#userMessageBody').html('Administrators have been informed of this error. Please try again at another time.');
-		$('#userMessage').modal();
-		$('#userMessage').modal('show');
-	}
-
-
-	$('#emailUsLink').click(function(event){
-		event.preventDefault();
-		$('#userMessageLabel').html('Email Us');
-		$('#userMessageBody').html('Please contact us at contactus@mysocialinvite.com');
-		$('#userMessage').modal();
-		$('#userMessage').modal('show');
+	$(".menu-button").hover( function() {
+		$(".dropdown").show();
+	},
+	function() {
+		$(".dropdown").hide();
+	}).click( function() {
+		if ($(".dropdown").css("display") == "none") {
+			$(".dropdown").show();
+		} else {
+			$(".dropdown").hide();
+		}
 	});
 });
 

@@ -1,19 +1,53 @@
 
 
-$(function () {
-	$(".menu-button").hover( function() {
-		$(".dropdown").show();
-	},
-	function() {
-		$(".dropdown").hide();
-	}).click( function() {
-		if ($(".dropdown").css("display") == "none") {
-			$(".dropdown").show();
-		} else {
-			$(".dropdown").hide();
-		}
-	});
-});
+// $(function () {
+// 	$(".menu-button").hover( function() {
+//     var idPattern = /$menu-button-[0-9]+&/
+//     var menuButtonIndexPattern = /[0-9]+/
+//     var id = $(this).attr("id");
+//     var pattern = idPattern.exec(id);
+//     var menuButtonIndex = menuButtonIndexPattern.exec(pattern);
+
+// 		$("#dropdown-" + menuButtonIndex).show();
+// 	},
+// 	function() {
+//     var idPattern = /$menu-button-[0-9]+&/
+//     var menuButtonIndexPattern = /[0-9]+/
+//     var id = $(this).attr("id");
+//     var menuButtonIndex = menuButtonIndexPattern.exec(idPattern.exec(id));
+
+//     setTimeout(function () {
+//       // if (! $("#dropdown-" + menuButtonIndex).is(":hover")) {
+//       //   $("#dropdown-" + menuButtonIndex).hide();
+//       // }
+//     }, 50);
+// 	}).click( function() {
+//     var idPattern = /$menu-button-[0-9]+&/
+//     var menuButtonIndexPattern = /[0-9]+/
+//     var id = $(this).attr("id");
+//     var menuButtonIndex = menuButtonIndexPattern.exec(idPattern.exec(id));
+
+// 		if ($("#dropdown-" + menuButtonIndex).css("display") == "none") {
+// 			$("#dropdown-" + menuButtonIndex).show();
+// 		} else {
+// 			$("#dropdown-" + menuButtonIndex).hide();
+// 		}
+// 	});
+
+//   $(".dropdown").hover( function() {},
+//   function() {
+//     var idPattern = new RegExp("$dropdown-[0-9]+&"); 
+//     var menuDropdownIndexPattern = /[0-9]+/
+//     var id = $(this).attr("id");
+//     var menuDropdownIndex = menuDropdownIndexPattern.exec(idPattern.exec(id));
+
+//     setTimeout(function () {
+//       // if (! $("#menu-button-" + menuDropdownIndex).is(":hover")) {
+//       //   $("#dropdown-" + menuDropdownIndex).hide();
+//       // }
+//     }, 50);
+//   });
+// });
 
 $.extend({
   getUrlVars: function(){

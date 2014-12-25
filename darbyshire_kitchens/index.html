@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-<html lang="en">
+<html lang="en" ng-app="myDarbyshireKitchensApp">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,8 +12,8 @@
   <!-- Bootstrap Stylesheets -->
   <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 
-  <link rel="stylesheet/less" type="text/css" href="static/css/template.less" />
-
+  <!-- AngularJS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 
   <!-- set options before less.js script -->
   <script>
@@ -33,11 +33,13 @@
       //rootpath: ":/a.com/"
     };
   </script>
+  <!-- Less CSS -->
   <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/2.1.0/less.min.js"></script>
 
+  <!-- Website Less CSS Template -->
+  <link rel="stylesheet/less" type="text/css" href="static/css/template.less" />
 
-
-  <!-- Template Stylesheet -->
+  <!-- Website Stylesheet Template-->
   <link rel="stylesheet" href="static/css/template.css" media="screen">
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -55,13 +57,12 @@
     <div id="header" class="row">
       <h2 class="col-xs-12 col-sm-5 col-md-4">Darbyshire Kitchens</h2>
 
-      <div id="menu" class="col-xs-12 col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-4">
+      <div id="menu" ng-controller="myMainMenuCtrl" class="col-xs-12 col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-4">
         <div class="row">
           
           <!-- Button trigger modal -->
-          <div class="menu-button col-xs-4" data-toggle="modal" data-target="#myModal">
-            Contact
-          </div>
+          <div id="menu-button-0" class="menu-button col-xs-4 col-lg-3" ng-mouseenter="showDropdown(0)" ng-mouseleave="hideDropdown(0)" data-toggle="modal" data-target="#myModal">Contact</div>
+          <div id="menu-dropdown-0" ng-show="dropdownStatuses[0]" ng-mouseleave="hideDropdown(0)" class="dropdown col-xs-12">sdarbyshire@gmail.com</div>
 
           <!-- Modal -->
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -71,26 +72,17 @@
                   <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                   <h4 class="modal-title" id="myModalLabel">Email Address</h4>
                 </div>
-                <div class="modal-body">
-                  sdarbyshire@gmail.com
-                </div>
+                <div class="modal-body">sdarbyshire@gmail.com</div>
                 
               </div>
             </div>
           </div>
 
+          <div id="menu-button-1" class="menu-button col-xs-4 col-lg-3" ng-mouseenter="showDropdown(1)" ng-mouseleave="hideDropdown(1)">Services</div>
+          <div id="menu-dropdown-1" ng-show="dropdownStatuses[1]" ng-mouseleave="hideDropdown(1)" class="dropdown col-xs-12">Kitchen Installation</div>
 
-
-
-          <div class="menu-button col-xs-4">Service
-          </div>
-          <div class="dropdown col-xs-12">
-            Test
-          </div>
-
-
-
-          <div class="menu-button col-xs-4">Location</div>
+          <div id="menu-button-2" class="menu-button col-xs-4 col-lg-3" ng-mouseenter="showDropdown(2)" ng-mouseleave="hideDropdown(2)">Location</div>
+          <div id="menu-dropdown-2" ng-show="dropdownStatuses[2]" ng-mouseleave="hideDropdown(2)" class="dropdown col-xs-12">Greater Cincinnati</div>
         </div>
       </div>
     </div>
@@ -124,15 +116,15 @@
       <div id="advertisements" class="col-xs-12 col-md-3 col-md-offset-1">
         <div class="row">
           <div class="advertisement col-xs-6 col-sm-4 col-md-12">
-            Ad
+            Advertisement
           </div>
 
           <div class="advertisement col-xs-6 col-sm-4 col-md-12">
-            Ad
+            Advertisement
           </div>
 
           <div class="advertisement hidden-xs col-sm-4 col-md-12">
-            Ad
+            Advertisement
           </div>
         </div>
       </div>
@@ -152,7 +144,11 @@
   <!-- Boostrap JavaScript -->
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-  <!-- Load Additional JavaScript -->
+  <!-- Website JavaScript template -->
   <script src="static/js/main_template.js"></script>
+
+  <!-- AngularJS Classes -->
+  <script src="static/js/myDarbyshireKitchensApp.js"></script>
+  <script src="static/js/myMainMenuCtrl.js"></script>
 </body>
 </html>

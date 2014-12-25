@@ -51,42 +51,29 @@
 </head>
 
 <body>
-
+  <!-- Bootstrap fluid container for a responsive design -->
   <div id="container" class="container-fluid">
 
+    <!-- Header bar formatted with responsive Bootstrap columns -->
     <div id="header" class="row">
       <h2 class="col-xs-12 col-sm-5 col-md-4">Darbyshire Kitchens</h2>
 
+      <!-- Main menu using Bootstrap for styling and AngularJS for dropdown function -->
       <div id="menu" ng-controller="myMainMenuCtrl" class="col-xs-12 col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-4">
         <div class="row">
-          
-          <!-- Button trigger modal -->
-          <div id="menu-button-0" class="menu-button col-xs-4 col-lg-3" ng-mouseenter="showDropdown(0)" ng-mouseleave="hideDropdown(0)" data-toggle="modal" data-target="#myModal">Contact</div>
+          <div id="menu-button-0" class="menu-button col-xs-4 col-lg-3" ng-mouseenter="showDropdown(0)" ng-mouseleave="hideDropdown(0)" ng-click="toggleDropdown(0)">Contact</div>
           <div id="menu-dropdown-0" ng-show="dropdownStatuses[0]" ng-mouseleave="hideDropdown(0)" class="dropdown col-xs-12">sdarbyshire@gmail.com</div>
 
-          <!-- Modal -->
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <h4 class="modal-title" id="myModalLabel">Email Address</h4>
-                </div>
-                <div class="modal-body">sdarbyshire@gmail.com</div>
-                
-              </div>
-            </div>
-          </div>
-
-          <div id="menu-button-1" class="menu-button col-xs-4 col-lg-3" ng-mouseenter="showDropdown(1)" ng-mouseleave="hideDropdown(1)">Services</div>
+          <div id="menu-button-1" class="menu-button col-xs-4 col-lg-3" ng-mouseenter="showDropdown(1)" ng-mouseleave="hideDropdown(1)" ng-click="toggleDropdown(1)">Services</div>
           <div id="menu-dropdown-1" ng-show="dropdownStatuses[1]" ng-mouseleave="hideDropdown(1)" class="dropdown col-xs-12">Kitchen Installation</div>
 
-          <div id="menu-button-2" class="menu-button col-xs-4 col-lg-3" ng-mouseenter="showDropdown(2)" ng-mouseleave="hideDropdown(2)">Location</div>
+          <div id="menu-button-2" class="menu-button col-xs-4 col-lg-3" ng-mouseenter="showDropdown(2)" ng-mouseleave="hideDropdown(2)" ng-click="toggleDropdown(2)">Locations</div>
           <div id="menu-dropdown-2" ng-show="dropdownStatuses[2]" ng-mouseleave="hideDropdown(2)" class="dropdown col-xs-12">Greater Cincinnati</div>
         </div>
       </div>
     </div>
 
+    <!-- Content body containing Bootstrap image carousel -->
     <div id="body" class="row">
       <div id="myCarousel" class="carousel slide col-xs-12 col-md-7 col-md-offset-1" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -95,14 +82,14 @@
           <li data-target="#myCarousel" data-slide-to="2"></li>
           <li data-target="#myCarousel" data-slide-to="3"></li>
         </ol>
-        <!-- Wrapper for slides -->
+        <!-- Wrapper for carousel images -->
         <div class="carousel-inner" role="listbox">
           <div class="active item"><img src="static/img/photo1.jpg" alt="Deck Banner"></div>
           <div class="item"><img src="static/img/photo2.jpg" alt="Deck Banner"></div>
           <div class="item"><img src="static/img/photo3.jpg" alt="Deck Banner"></div>
           <div class="item"><img src="static/img/photo4.jpg" alt="Deck Banner"></div>
         </div>
-        <!-- Controls -->
+        <!-- Carousel controls -->
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
@@ -113,23 +100,17 @@
         </a>
       </div>
 
+      <!-- Advertisement space for sale -->
       <div id="advertisements" class="col-xs-12 col-md-3 col-md-offset-1">
         <div class="row">
-          <div class="advertisement col-xs-6 col-sm-4 col-md-12">
-            Advertisement
-          </div>
-
-          <div class="advertisement col-xs-6 col-sm-4 col-md-12">
-            Advertisement
-          </div>
-
-          <div class="advertisement hidden-xs col-sm-4 col-md-12">
-            Advertisement
-          </div>
+          <div class="advertisement col-xs-6 col-sm-4 col-md-12">Advertise Here!</div>
+          <div class="advertisement col-xs-6 col-sm-4 col-md-12">Advertise Here!</div>
+          <div class="advertisement hidden-xs col-sm-4 col-md-12">Advertise Here!</div>
         </div>
       </div>
     </div>
 
+    <!-- Footer with Bootstrap copyright -->
     <footer id="footer" class="row">
       <div class="col-xs-12">
         <div id="copyrightTag">2014-15 Darbyshire Kitchens</div>

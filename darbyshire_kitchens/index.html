@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 
-<html lang="en" ng-app="myDarbyshireKitchensApp">
+<html lang="en" ng-app="myDarbyshireKitchensApp" >
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +13,7 @@
   <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- AngularJS -->
-  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
 
   <!-- set options before less.js script -->
   <script>
@@ -59,15 +59,15 @@
       <h2 class="col-xs-12 col-sm-5 col-md-4">Darbyshire Kitchens</h2>
 
       <!-- Main menu using Bootstrap for styling and AngularJS for dropdown function -->
-      <div id="menu" ng-controller="myMainMenuCtrl" class="col-xs-12 col-sm-5 col-sm-offset-2 col-md-4 col-md-offset-4 col-lg-4">
+      <div id="menu" ng-controller="myMainMenuCtrl" class="col-xs-12 col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-3 col-lg-4 col-lg-offset-4">
         <div class="row">
-          <div id="menu-button-0" class="menu-button col-xs-4 col-lg-3" ng-mouseenter="showDropdown(0)" ng-mouseleave="hideDropdown(0)" ng-click="toggleDropdown(0)">Contact</div>
+          <div id="menu-button-0" class="menu-button col-xs-4 col-md-3" ng-class="{'menu-button-hover': dropdownStatuses[0]}" ng-mouseenter="showDropdown(0)" ng-mouseleave="hideDropdown(0)" ng-click="toggleDropdown(0)">Contact</div>
           <div id="menu-dropdown-0" ng-show="dropdownStatuses[0]" ng-mouseleave="hideDropdown(0)" class="dropdown col-xs-12">sdarbyshire@gmail.com</div>
 
-          <div id="menu-button-1" class="menu-button col-xs-4 col-lg-3" ng-mouseenter="showDropdown(1)" ng-mouseleave="hideDropdown(1)" ng-click="toggleDropdown(1)">Services</div>
+          <div id="menu-button-1" class="menu-button col-xs-4 col-md-3" ng-class="{'menu-button-hover': dropdownStatuses[1]}" ng-mouseenter="showDropdown(1)" ng-mouseleave="hideDropdown(1)" ng-click="toggleDropdown(1)">Services</div>
           <div id="menu-dropdown-1" ng-show="dropdownStatuses[1]" ng-mouseleave="hideDropdown(1)" class="dropdown col-xs-12">Kitchen Installation</div>
 
-          <div id="menu-button-2" class="menu-button col-xs-4 col-lg-3" ng-mouseenter="showDropdown(2)" ng-mouseleave="hideDropdown(2)" ng-click="toggleDropdown(2)">Locations</div>
+          <div id="menu-button-2" class="menu-button col-xs-4 col-md-3" ng-class="{'menu-button-hover': dropdownStatuses[2]}" ng-mouseenter="showDropdown(2)" ng-mouseleave="hideDropdown(2)" ng-click="toggleDropdown(2)">Locations</div>
           <div id="menu-dropdown-2" ng-show="dropdownStatuses[2]" ng-mouseleave="hideDropdown(2)" class="dropdown col-xs-12">Greater Cincinnati</div>
         </div>
       </div>
@@ -75,7 +75,7 @@
 
     <!-- Content body containing Bootstrap image carousel -->
     <div id="body" class="row">
-      <div id="myCarousel" class="carousel slide col-xs-12 col-md-7 col-md-offset-1" data-ride="carousel">
+      <div id="myCarousel" ng-cloak class="carousel slide col-xs-12 col-md-7 col-md-offset-1" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
           <li data-target="#myCarousel" data-slide-to="1"></li>

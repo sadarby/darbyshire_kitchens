@@ -1,8 +1,13 @@
+/**
+  * AngularJS main menu controller.
+  *
+  * Auther: Seth Darbyshire
+  */
 
 console.log("Loading myMainMenuCtrl controller"); // Logging
 
 // AngularJS controller for main menu with dropdowns
-app.controller("myMainMenuCtrl", function($scope, $timeout) {
+app.controller("myMainMenuCtrl", ['$scope', '$timeout', function($scope, $timeout) {
 
   // Menu button and dropdown HTML IDs
   $scope.menuButtonHtmlIds = ["menu-button-0", "menu-button-1", "menu-button-2"];
@@ -37,6 +42,6 @@ app.controller("myMainMenuCtrl", function($scope, $timeout) {
   $scope.toggleDropdown = function(index) {
     $scope.dropdownStatuses[index] = (! $scope.dropdownStatuses[index]);
   }
-});
+}]);
 
 console.log("Loaded myMainMenuCtrl controller"); // Logging

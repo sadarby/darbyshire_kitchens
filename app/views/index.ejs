@@ -1,11 +1,135 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<!DOCTYPE HTML>
+
+<html lang="en" ng-app="myDarbyshireKitchensApp" >
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Darbyshire Kitchens</title>
+  <meta name="description" content="Darbyshire Kitchens - Private Contractor">  
+
+  <!-- Bootstrap Stylesheets -->
+  <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- AngularJS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+
+  <!-- set options before less.js script -->
+  <script>
+    less = {
+      env: "development",
+      logLevel: 2,
+      async: false,
+      fileAsync: false,
+      poll: 1000,
+      functions: {},
+      dumpLineNumbers: "comments",
+      relativeUrls: false,
+      globalVars: {
+        var1: '"string value"',
+        var2: 'regular value'
+      },
+      //rootpath: ":/a.com/"
+    };
+  </script>
+  <!-- Less CSS -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/2.1.0/less.min.js"></script>
+
+  <!-- Website Less CSS Template -->
+  <link rel="stylesheet/less" type="text/css" href="/stylesheets/template.less" />
+
+  <!-- Website Stylesheet Template-->
+  <link rel="stylesheet" href="/stylesheets/template.css" media="screen">
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="http://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <!-- Bootstrap fluid container for a responsive design -->
+  <div id="container" class="container-fluid">
+
+    <!-- Header bar formatted with responsive Bootstrap columns -->
+    <div id="header" class="row">
+      <h2 class="col-xs-12 col-sm-5 col-md-4">Darbyshire Kitchens</h2>
+
+      <!-- Main menu using Bootstrap for styling and AngularJS for dropdown function -->
+      <div id="menu" ng-controller="myMainMenuCtrl" class="col-xs-12 col-sm-6 col-sm-offset-1 col-md-5 col-md-offset-3 col-lg-4 col-lg-offset-4">
+        <div class="row">
+          <div id="menu-button-0" class="menu-button col-xs-4 col-md-3" ng-class="{'menu-button-hover': dropdownStatuses[0]}" ng-mouseenter="showDropdown(0)" ng-mouseleave="hideDropdown(0)" ng-click="toggleDropdown(0)">Contact</div>
+          <div id="menu-dropdown-0" ng-show="dropdownStatuses[0]" ng-mouseleave="hideDropdown(0)" class="dropdown col-xs-12">sdarbyshire@gmail.com</div>
+
+          <div id="menu-button-1" class="menu-button col-xs-4 col-md-3" ng-class="{'menu-button-hover': dropdownStatuses[1]}" ng-mouseenter="showDropdown(1)" ng-mouseleave="hideDropdown(1)" ng-click="toggleDropdown(1)">Services</div>
+          <div id="menu-dropdown-1" ng-show="dropdownStatuses[1]" ng-mouseleave="hideDropdown(1)" class="dropdown col-xs-12">Kitchen Installation</div>
+
+          <div id="menu-button-2" class="menu-button col-xs-4 col-md-3" ng-class="{'menu-button-hover': dropdownStatuses[2]}" ng-mouseenter="showDropdown(2)" ng-mouseleave="hideDropdown(2)" ng-click="toggleDropdown(2)">Locations</div>
+          <div id="menu-dropdown-2" ng-show="dropdownStatuses[2]" ng-mouseleave="hideDropdown(2)" class="dropdown col-xs-12">Greater Cincinnati</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content body containing Bootstrap image carousel -->
+    <div id="body" class="row">
+      <div id="myCarousel" ng-cloak class="carousel slide col-xs-12 col-md-7 col-md-offset-1" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+          <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+        <!-- Wrapper for carousel images -->
+        <div class="carousel-inner" role="listbox">
+          <div class="active item"><img src="/images/photo1.jpg" alt="Deck Banner"></div>
+          <div class="item"><img src="/images/photo2.jpg" alt="Deck Banner"></div>
+          <div class="item"><img src="/images/photo3.jpg" alt="Deck Banner"></div>
+          <div class="item"><img src="/images/photo4.jpg" alt="Deck Banner"></div>
+        </div>
+        <!-- Carousel controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+      <!-- Advertisement space for sale -->
+      <div id="advertisements" class="col-xs-12 col-md-3 col-md-offset-1">
+        <div class="row">
+          <div class="advertisement col-xs-6 col-sm-4 col-md-12">Advertise Here!</div>
+          <div class="advertisement col-xs-6 col-sm-4 col-md-12">Advertise Here!</div>
+          <div class="advertisement hidden-xs col-sm-4 col-md-12">Advertise Here!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer with Bootstrap copyright -->
+    <footer id="footer" class="row">
+      <div class="col-xs-12">
+        <div id="copyrightTag">2014-15 Darbyshire Kitchens</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- jQuery -->
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+  <!-- Boostrap JavaScript -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  <!-- Website JavaScript template -->
+  <script src="/javascripts/main_template.js"></script>
+
+  <!-- AngularJS Classes -->
+  <script src="/javascripts/myDarbyshireKitchensApp.js"></script>
+  <script src="/javascripts/myMainMenuCtrl.js"></script>
+</body>
 </html>

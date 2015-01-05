@@ -1,0 +1,83 @@
+/**
+  * Stylesheet for basic template.
+  *
+  * Auther: Seth Darbyshire
+  */
+
+#container {
+  text-align: center;
+  background-color: #D3A53F;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+#header {
+  padding-left: 0em;
+  padding-right: 0em;
+  color: white;
+  background-color: #704E00;
+}
+
+#header h2 {
+  margin-top: 0em;
+  margin-bottom: 0em;
+  padding: 0.5em 1em;
+  font-size: 170%;
+}
+
+#header #menu .menu-button {
+  text-align: center;
+  font-size: 150%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#header #menu .menu-button-hover {
+  color: gray;
+}
+
+.dropdown {
+  position: absolute;
+  top: 45px; 
+  z-index: 5;
+  background-color: #704E00;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  font-size: 150%;
+}
+
+#myCarousel {
+  padding-left: 0em;
+  padding-right: 0em;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+#myCarousel .carousel-indicators {
+  margin-bottom: 40px;
+}
+
+#myCarousel .carousel-control {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+#advertisements .advertisement {
+  padding-top: 100px;
+  padding-bottom: 100px;
+  font-size: 130%;
+  color: white;
+  background-color: #B4861C;
+}
+
+#footer {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  text-align: center;
+  font-size: 20px;
+  background-color: #704E00;
+  color: white;
+}

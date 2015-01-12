@@ -13,7 +13,29 @@ const cookieParser = require('cookie-parser'); // HTTP cookies via Express
 const session = require('express-session'); // HTTP sessions via Express
 const redisClient = require('redis').createClient(); // Redis database client
 const RedisStore = require('connect-redis')(session); // Redis session store
+const MongoClient = require('mongodb').MongoClient // MongoDB database client
+const monk = require('monk'); // Thin MongoDB layer
+const db = monk('localhost:27017/appdb'); // Create connection to MongoDB
+
 const bodyParser = require('body-parser'); // HTTP/JSON body parser
+
+//test MongoDB
+var test = db.get('test');
+test.find({ name: 'Seth' }).on('complete', function(err, doc) {
+  if (err) throw err;
+  log.info('MONGO', doc);
+
+  if (doc.length > 1) {
+    log.info('MONGO', 'found something ' + doc[0].name);
+  } else {
+    test.insert({ name: 'Seth' }).on('complete', function(err, doc2) {
+      if (err) throw err;
+    });
+  }
+});
+
+// Connection URL
+var url = 'mongodb://localhost:27017/myproject';
 
 // Load the application view routers
 const routes = require('./routes/index');
@@ -23,8 +45,8 @@ const app = express(); // Create the express app
 
 // Load the application configuration file
 const config = {
-    env: 'development'
-    //env: 'prod'
+  env: 'development'
+  //env: 'prod'
 };
 
 app.set('env', config.env); // Set the app environment

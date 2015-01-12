@@ -29,3 +29,6 @@ node_modules
 
 #Dropbox metadata
 **/.DS_Store
+
+# Redis dump files
+*.rdb

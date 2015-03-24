@@ -5,6 +5,7 @@
   */
 
 const express = require('express'); // Express JS application
+const config = require('config');
 const path = require('path'); // System paths
 const favicon = require('serve-favicon'); // Web app favicon
 const logger = require('morgan'); // HTTP logging
@@ -13,29 +14,12 @@ const cookieParser = require('cookie-parser'); // HTTP cookies via Express
 const session = require('express-session'); // HTTP sessions via Express
 const redisClient = require('redis').createClient(); // Redis database client
 const RedisStore = require('connect-redis')(session); // Redis session store
-const MongoClient = require('mongodb').MongoClient // MongoDB database client
+//const MongoClient = require('mongodb').MongoClient // MongoDB database client
 const monk = require('monk'); // Thin MongoDB layer
 const db = monk('localhost:27017/appdb'); // Create connection to MongoDB
-
 const bodyParser = require('body-parser'); // HTTP/JSON body parser
 
-//test MongoDB
-var test = db.get('test');
-test.find({ name: 'Seth' }).on('complete', function(err, doc) {
-  if (err) throw err;
-  log.info('MONGO', doc);
-
-  if (doc.length > 1) {
-    log.info('MONGO', 'found something ' + doc[0].name);
-  } else {
-    test.insert({ name: 'Seth' }).on('complete', function(err, doc2) {
-      if (err) throw err;
-    });
-  }
-});
-
-// Connection URL
-var url = 'mongodb://localhost:27017/myproject';
+log.info(config.get('test'));
 
 // Load the application view routers
 const routes = require('./routes/index');
@@ -44,12 +28,12 @@ const users = require('./routes/users');
 const app = express(); // Create the express app
 
 // Load the application configuration file
-const config = {
-  env: 'development'
-  //env: 'prod'
-};
+// const config = {
+//   env: 'development'
+//   //env: 'prod'
+// };
 
-app.set('env', config.env); // Set the app environment
+app.set('env', config.get('env')); // Set the app environment
 
 // Configure the Redis client to log when ready or erring
 redisClient
@@ -74,7 +58,7 @@ if (app.get('env') === 'development') {
 
 app.use(bodyParser.json()); // JSON parser
 app.use(bodyParser.urlencoded({ extended: false })); // URL parser
-app.use(cookieParser()); // HTTP cokie parser
+app.use(cookieParser()); // HTTP cookie parser
 
 // Session parser and store
 app.use(session({
@@ -82,7 +66,9 @@ app.use(session({
   store: new RedisStore({ // Build the Redis session store
     client: redisClient
   }),
-  secret: 'keyboard cat' // Key used to hash session cookie
+  secret: 'de93c7ab383edfb6af16473f70ccf6', // Key used to hash session cookie
+  resave: false, // Only save session upon change
+  saveUninitialized: false // Save all new sessions
 }));
 
 // Load the static public content
@@ -90,7 +76,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Seth test route
 app.get('/api/:name', function(req, res) {
-    res.json(200, { "hello": req.params.name });
+    res.status(200).json({ "hello": req.params.name });
 });
 
 // Set the application view routers

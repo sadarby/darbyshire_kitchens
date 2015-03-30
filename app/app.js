@@ -4,48 +4,27 @@
   * @desc Entry point, loader, and configuration of Express JS application.
   */
 
+// Load application dependencies
 const express = require('express'); // Express JS application
-const config = require('config');
+const config = require('config'); // JSON Config files in app/config, env var NODE_ENV
 const path = require('path'); // System paths
 const favicon = require('serve-favicon'); // Web app favicon
 const logger = require('morgan'); // HTTP logging
-const log = require('npmlog'); // General logging
+const log = require('npmlog'); // General loggingg
 const cookieParser = require('cookie-parser'); // HTTP cookies via Express
 const session = require('express-session'); // HTTP sessions via Express
 const redisClient = require('redis').createClient(); // Redis database client
 const RedisStore = require('connect-redis')(session); // Redis session store
-//const MongoClient = require('mongodb').MongoClient // MongoDB database client
 const monk = require('monk'); // Thin MongoDB layer
-const db = monk('localhost:27017/appdb'); // Create connection to MongoDB
+const db = monk(config.get('mongo_db_config.hostname')); // Create connection to MongoDB
 const bodyParser = require('body-parser'); // HTTP/JSON body parser
-
-log.info(config.get('test'));
+const app = express(); // Create the express app
 
 // Load the application view routers
 const routes = require('./routes/index');
 const users = require('./routes/users');
 
-const app = express(); // Create the express app
-
-// Load the application configuration file
-// const config = {
-//   env: 'development'
-//   //env: 'prod'
-// };
-
 app.set('env', config.get('env')); // Set the app environment
-
-// Configure the Redis client to log when ready or erring
-redisClient
-  .on('ready', function() { log.info('REDIS', 'ready'); })
-  .on('error', function(err) { log.error('REDIS', err.message); });
-
-// EJS view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-// Uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // Set the app logging strategy
 if (app.get('env') === 'development') {
@@ -56,6 +35,12 @@ if (app.get('env') === 'development') {
   app.use(logger('combined'));
 }
 
+// Configure the Redis client to log when ready or erring
+// Redis used primarily for session storage
+redisClient
+  .on('ready', function() { log.info('REDIS', 'ready'); })
+  .on('error', function(err) { log.error('REDIS', err.message); });
+
 app.use(bodyParser.json()); // JSON parser
 app.use(bodyParser.urlencoded({ extended: false })); // URL parser
 app.use(cookieParser()); // HTTP cookie parser
@@ -63,6 +48,7 @@ app.use(cookieParser()); // HTTP cookie parser
 // Session parser and store
 app.use(session({
   name: 'connect.sid', // Name of the session cookie
+  // List the sessions with redis-cli KEYS 'sess:*'
   store: new RedisStore({ // Build the Redis session store
     client: redisClient
   }),
@@ -71,45 +57,53 @@ app.use(session({
   saveUninitialized: false // Save all new sessions
 }));
 
+// Set the application view routers
+app.use('/', routes);
+app.use('/users', users);
+
+// EJS view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+// Uncomment after placing your favicon in /public
+//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 // Load the static public content
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Seth test route
 app.get('/api/:name', function(req, res) {
-    res.status(200).json({ "hello": req.params.name });
+  res.status(200).json({ "hello": req.params.name });
 });
-
-// Set the application view routers
-app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
-// development error handler
-// will print stacktrace
+// Determine the proper error handling strategy
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+  // development error handler
+  // will print stacktrace
+  app.use(function(err, req, res, next) {
     res.status(err.status || 500);
     res.render('error', {
-        message: err.message,
-        error: {}
+      message: err.message,
+      error: err
     });
-});
+  });
+} else if (app.get('env') === 'production') {
+  // production error handler
+  // no stacktraces leaked to user
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: {}
+    });
+  });
+}
 
 module.exports = app; // Export the Express app

@@ -1,4 +1,6 @@
 {
-    "test": "hello",
-    "env": "development"
+    "env": "development",
+    "mongo_db_config": {
+        "hostname": "localhost:27017/appdb"
+    }
 }
